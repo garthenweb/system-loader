@@ -1,0 +1,25 @@
+{
+  "name": "whatwg-loader",
+  "version": "0.0.1",
+  "description": "Polyfill for the JavaScript Loader Standard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garthenweb/es6-loader.git"
+  },
+  "keywords": [
+    "es6",
+    "module",
+    "loader",
+    "import"
+  ],
+  "author": "Jannick Garthen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garthenweb/es6-loader/issues"
+  },
+  "homepage": "https://github.com/garthenweb/es6-loader#readme"
+}
