@@ -21,5 +21,25 @@
   "bugs": {
     "url": "https://github.com/garthenweb/es6-loader/issues"
   },
-  "homepage": "https://github.com/garthenweb/es6-loader#readme"
+  "homepage": "https://github.com/garthenweb/es6-loader#readme",
+  "devDependencies": {
+    "babel-eslint": "^4.1.0",
+    "babelify": "^6.2.0",
+    "eslint": "^1.3.1",
+    "eslint-config-airbnb": "0.0.8",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-babel-preprocessor": "^5.2.1",
+    "karma-browserify": "^4.3.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify"
+      ]
+    ]
+  }
 }
