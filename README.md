@@ -6,6 +6,10 @@ _Caution: This repo may possibly become a polyfill for the JavaScript Loader Sta
 
 ## Documentation
 
+Files to import must be precompiled with babel to get proper loaded into the system. You can run `babel src --out-dir dest` to compile all your files.
+
+The loader can be used via package or via a global variable.
+
 ``` javascript
 // use api as object
 import { System } from 'es6-loader';

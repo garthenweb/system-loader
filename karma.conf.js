@@ -16,10 +16,17 @@ module.exports = function configuration(config) {
     // list of files / patterns to load in the browser
     files: [
       'node_modules/babelify/node_modules/babel-core/browser-polyfill.js',
+      'node_modules/whatwg-fetch/fetch.js',
       'index.js',
       'polyfill.js',
-      'lib/**',
-      'tests/**',
+      'lib/**/*.js',
+      'tests/**/*.test.js',
+      {
+        pattern: 'tests/assets/**/*.js',
+        watched: true,
+        served: true,
+        included: false,
+      },
     ],
 
 
@@ -33,8 +40,9 @@ module.exports = function configuration(config) {
     preprocessors: {
       'index.js': ['browserify'],
       'polyfill.js': ['browserify'],
-      'src/**/*.js': ['browserify'],
-      'tests/**/*.js': ['browserify'],
+      'lib/**/*.js': ['browserify'],
+      'tests/**/*.test.js': ['browserify'],
+      'tests/assets/**/*.js': ['babel'],
     },
 
     // test results reporter to use
