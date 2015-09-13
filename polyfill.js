@@ -1,2 +1,4 @@
-import System from './index';
-window.System = System;
+import Loader from './lib/Reflect.Loader';
+
+window.System = window.System || {};
+window.System.loader = new Loader();

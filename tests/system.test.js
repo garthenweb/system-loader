@@ -1,4 +1,4 @@
-import System from '../lib/System';
+import { System } from '../index';
 
 describe('System', () => {
   it('should be defined', () => {
