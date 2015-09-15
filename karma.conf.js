@@ -42,7 +42,7 @@ module.exports = function configuration(config) {
       'polyfill.js': ['browserify'],
       'lib/**/*.js': ['browserify'],
       'tests/**/*.test.js': ['browserify'],
-      'tests/assets/**/*.js': ['babel'],
+      'tests/assets/**/*.es6.js': ['babel'],
     },
 
     // test results reporter to use
