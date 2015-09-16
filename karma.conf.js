@@ -37,8 +37,7 @@ module.exports = function configuration(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'index.js': ['browserify'],
+    preprocessors: {      'index.js': ['browserify'],
       'polyfill.js': ['browserify'],
       'lib/**/*.js': ['browserify'],
       'tests/**/*.test.js': ['browserify'],

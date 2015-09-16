@@ -27,4 +27,17 @@ describe('System', () => {
       })
       .then(done);
   });
+
+  it('should import a module within a module with require', (done) => {
+    let error = false;
+    System
+      .import('/base/tests/assets/import-module.es6.js')
+      .then(null, () => {
+        error = true;
+      })
+      .then(() => {
+        expect(error).toBe(false);
+      })
+      .then(done);
+  });
 });
