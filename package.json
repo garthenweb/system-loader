@@ -1,5 +1,5 @@
 {
-  "name": "whatwg-loader",
+  "name": "system-loader",
   "version": "0.0.1",
   "description": "Polyfill for the JavaScript Loader Standard",
   "main": "index.js",

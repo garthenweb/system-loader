@@ -1,4 +1,16 @@
-import System from '../lib/System';
+import * as System from '../index';
+
+function expectPromiseResolves(promise, done) {
+  let error;
+  promise
+    .then(null, (err) => {
+      error = err;
+    })
+    .then(() => {
+      expect(error).toBeUndefined();
+    })
+    .then(done);
+}
 
 describe('System', () => {
   it('should be defined', () => {
@@ -16,28 +28,12 @@ describe('System', () => {
   });
 
   it('should execute scripts with window as context', (done) => {
-    let error = false;
-    System
-      .import('/base/tests/assets/context-this.js')
-      .then(null, () => {
-        error = true;
-      })
-      .then(() => {
-        expect(error).toBe(false);
-      })
-      .then(done);
+    const promise = System.import('/base/tests/assets/context-this.js');
+    expectPromiseResolves(promise, done);
   });
 
-  it('should import a module within a module with require', (done) => {
-    let error = false;
-    System
-      .import('/base/tests/assets/import-module.es6.js')
-      .then(null, () => {
-        error = true;
-      })
-      .then(() => {
-        expect(error).toBe(false);
-      })
-      .then(done);
+  it('should import modules with nested dependencies', (done) => {
+    const promise = System.import('/base/tests/assets/import-module.es6.js');
+    expectPromiseResolves(promise, done);
   });
 });
