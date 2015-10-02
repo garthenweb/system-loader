@@ -1,5 +1,5 @@
 import url from 'url';
-import { getStackPaths } from '../lib/helper';
+import { getStackPaths, isRelativePath } from '../lib/helper';
 
 describe('getStackPaths', () => {
   it('should return an array', () => {
@@ -15,3 +15,27 @@ describe('getStackPaths', () => {
     expect(paths[0].match(/:\d+$/)).toBe(null);
   });
 });
+
+describe('isRelativePath', () => {
+  it('should detect relative paths starting with a dot', () => {
+    expect(isRelativePath('./my/path')).toBe(true);
+    expect(isRelativePath('../my/path')).toBe(true);
+  });
+
+  it('should detect relative paths starting without a dot', () => {
+    expect(isRelativePath('my/path')).toBe(true);
+  });
+
+  it('should detect non relative paths starting with a protocol', () => {
+    expect(isRelativePath('http://my/path')).toBe(false);
+    expect(isRelativePath('https://my/path')).toBe(false);
+    expect(isRelativePath('djkasdhajhdas://my/path')).toBe(false);
+  });
+
+  it('should detect non relative paths starting with a slash', () => {
+    expect(isRelativePath('/my/path')).toBe(false);
+    expect(isRelativePath('//my/path')).toBe(false);
+  });
+});
+
+
