@@ -67,5 +67,5 @@ Please make sure that your pull requests pass all tests (`npm test`) and the lin
 
 [1]: https://travis-ci.org/garthenweb/system-loader.svg
 [2]: https://travis-ci.org/garthenweb/system-loader
-[3]: https://coveralls.io/repos/garthenweb/system-loader/badge.png
-[4]: https://coveralls.io/r/garthenweb/system-loader
+[3]: https://coveralls.io/repos/garthenweb/system-loader/badge.svg?branch=master&service=github
+[4]: https://coveralls.io/github/garthenweb/system-loader?branch=master
