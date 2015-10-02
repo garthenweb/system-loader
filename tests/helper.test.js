@@ -1,5 +1,5 @@
 import url from 'url';
-import { getStackPaths, isRelativePath } from '../lib/helper';
+import { getStackPaths, isRelativePath, normalizeURL } from '../lib/helper';
 
 describe('getStackPaths', () => {
   it('should return an array', () => {
@@ -17,25 +17,76 @@ describe('getStackPaths', () => {
 });
 
 describe('isRelativePath', () => {
-  it('should detect relative paths starting with a dot', () => {
-    expect(isRelativePath('./my/path')).toBe(true);
-    expect(isRelativePath('../my/path')).toBe(true);
+  describe('should detect relative paths starting', () => {
+    it('with a dot', () => {
+      expect(isRelativePath('./my/path')).toBe(true);
+      expect(isRelativePath('../my/path')).toBe(true);
+    });
+
+    it('without a dot', () => {
+      expect(isRelativePath('my/path')).toBe(true);
+    });
   });
 
-  it('should detect relative paths starting without a dot', () => {
-    expect(isRelativePath('my/path')).toBe(true);
-  });
+  describe('should detect non relative paths starting', () => {
+    it('with a protocol', () => {
+      expect(isRelativePath('http://my/path')).toBe(false);
+      expect(isRelativePath('https://my/path')).toBe(false);
+      expect(isRelativePath('djkasdhajhdas://my/path')).toBe(false);
+    });
 
-  it('should detect non relative paths starting with a protocol', () => {
-    expect(isRelativePath('http://my/path')).toBe(false);
-    expect(isRelativePath('https://my/path')).toBe(false);
-    expect(isRelativePath('djkasdhajhdas://my/path')).toBe(false);
-  });
-
-  it('should detect non relative paths starting with a slash', () => {
-    expect(isRelativePath('/my/path')).toBe(false);
-    expect(isRelativePath('//my/path')).toBe(false);
+    it('with a slash', () => {
+      expect(isRelativePath('/my/path')).toBe(false);
+      expect(isRelativePath('//my/path')).toBe(false);
+    });
   });
 });
 
+describe('normalizeURL', () => {
+  const origin = location.protocol + '//' + location.host;
+  it('should not change perfect paths', () => {
+    const urls = [
+      'http://test.tld/script.js',
+      '//test.tld/script.js',
+      'https://test.tld/script.js',
+    ];
+    urls
+      .map(u => normalizeURL(u))
+      .forEach(u => expect(u).toBe(u));
+  });
 
+  it('should add js extension if missing', () => {
+    expect(
+      normalizeURL('http://test.tld/script')
+    ).toBe('http://test.tld/script.js');
+  });
+
+  it('should add origin if missing', () => {
+    expect(normalizeURL('/script.js')).toBe(origin + '/script.js');
+  });
+
+  it('should beautify path', () => {
+    expect(
+      normalizeURL('http://test.tld/test/.././script.js')
+    ).toBe('http://test.tld/script.js');
+  });
+
+  it('should merge relative path with referrer', () => {
+    expect(
+      normalizeURL('./script.js', 'http://test.tld/js/myscript.js')
+    ).toBe('http://test.tld/js/script.js');
+  });
+
+  it('should throw if relative path without a referrer is given', () => {
+    function throwFn() {
+      normalizeURL('./script.js');
+    }
+    expect(throwFn).toThrow();
+  });
+
+  it('should ignore referrer if absolute path is given', () => {
+    expect(
+      normalizeURL('http://test.tld/script.js', 'http://test.tld/js/myscript.js')
+    ).toBe('http://test.tld/script.js');
+  });
+});
