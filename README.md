@@ -17,7 +17,7 @@ import * as System from 'es6-loader';
 
 ## Dependencies
 
-The polyfill if dependent on [Promise](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-promise-objects), [Fetch](https://fetch.spec.whatwg.org/) and [Map](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-map-constructor) api. Please make sure to include [es6-promise](https://github.com/jakearchibald/es6-promise), [whatwg-fetch](https://github.com/github/fetch) and [es6-collections](https://github.com/WebReflection/es6-collections) Polyfills if your users might not use supported browsers.
+The loader is dependent on [Promise](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-promise-objects), [Fetch](https://fetch.spec.whatwg.org/) and [Map](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-map-constructor) api. Please make sure to include [es6-promise](https://github.com/jakearchibald/es6-promise), [whatwg-fetch](https://github.com/github/fetch) and [es6-collections](https://github.com/WebReflection/es6-collections) Polyfills if your users might not use supported browsers.
 
 ## Examples
 
