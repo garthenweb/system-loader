@@ -1,18 +1,18 @@
-# es6-loader
+# system loader
 
-Module loader inspired by the [JavaScript Loader Standard](https://whatwg.github.io/loader/).
+A module loader for the browser inspired by the [JavaScript Loader Standard](https://whatwg.github.io/loader/).
 
 _Caution: This repo may become close to the JavaScript Loader Standard, at the moment this is just a prove of concept and **not** a polyfill._
 
 ## Documentation
 
-Files to import must be precompiled with babel to get proper loaded into the system. You can run `babel src --out-dir dest` to compile all your files.
+Files to import must be transpiled with babel when written in ES2015 and above to get proper loaded into the system. You can run `babel src --out-dir dest` to transpile all your files.
 
 The loader can be loaded via package.
 
 ``` javascript
 // get a System object
-import * as System from 'es6-loader';
+import * as System from 'system-loader';
 ```
 
 ## Dependencies
@@ -21,10 +21,10 @@ The loader is dependent on [Promise](http://www.ecma-international.org/ecma-262/
 
 ## Examples
 
-Load Polyfills before running your app.
+Load Polyfills before stating your app.
 
 ``` javascript
-import * as System from 'es6-loader';
+import * as System from 'system-loader';
 
 const polyfills = [];
 if(!(/* test for feature1 */)) {
@@ -42,10 +42,10 @@ Promise
   );
 ```
 
-Load new code after a user action to reduce the initial amount of javascript to load.
+Load new code after an interaction of the user to load JavaScript when needed and reduce the initial load time of your app.
 
 ``` javascript
-import * as System from 'es6-loader';
+import * as System from 'system-loader';
 
 document
   .querySelector('button')
