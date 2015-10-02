@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Sun Aug 30 2015 01:03:56 GMT+0200 (Mitteleuropäische Sommerzeit)
+const istanbul = require('browserify-istanbul');
 
 module.exports = function configuration(config) {
   config.set({
@@ -33,20 +34,35 @@ module.exports = function configuration(config) {
     exclude: [
     ],
 
+    browserify: {
+      debug: true,
+      transform: ['babelify', istanbul({
+        ignore: ['node_modules/**', 'tests/**'],
+      })],
+    },
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {      'index.js': ['browserify'],
-      'polyfill.js': ['browserify'],
+    preprocessors: {
+      'index.js': ['browserify'],
       'lib/**/*.js': ['browserify'],
       'tests/**/*.test.js': ['browserify'],
       'tests/assets/**/*.es6.js': ['babel'],
     },
 
+    coverageReporter: {
+      reporters: [
+        {
+          type: 'lcov',
+          dir: 'coverage',
+        },
+      ],
+    },
+
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage', 'coveralls'],
 
 
     // web server port
