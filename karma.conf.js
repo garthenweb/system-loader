@@ -18,7 +18,6 @@ module.exports = function configuration(config) {
       'node_modules/babelify/node_modules/babel-core/browser-polyfill.js',
       'node_modules/whatwg-fetch/fetch.js',
       'index.js',
-      'polyfill.js',
       'lib/**/*.js',
       'tests/**/*.test.js',
       {

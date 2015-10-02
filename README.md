@@ -1,4 +1,4 @@
-# system loader
+# system loader [![build status][1]][2] [![Coverage Status][3]][4]
 
 A module loader for the browser inspired by the [JavaScript Loader Standard](https://whatwg.github.io/loader/).
 
@@ -63,3 +63,9 @@ document
 Contributions in form of filling bug reports, add pull requests or give feedback are highly welcome.
 
 Please make sure that your pull requests pass all tests (`npm test`) and the linting rules are respected.
+
+
+[1]: https://travis-ci.org/garthenweb/system-loader.svg
+[2]: https://travis-ci.org/garthenweb/system-loader
+[3]: https://coveralls.io/repos/garthenweb/system-loader/badge.png
+[4]: https://coveralls.io/r/garthenweb/system-loader
