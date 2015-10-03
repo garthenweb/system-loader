@@ -1,5 +1,10 @@
 import url from 'url';
-import { getStackPaths, isRelativePath, normalizeURL } from '../lib/helper';
+import {
+  getStackPaths,
+  isRelativePath,
+  normalizeURL,
+  isSameOrigin,
+} from '../lib/helper';
 
 describe('getStackPaths', () => {
   it('should return an array', () => {
@@ -88,5 +93,19 @@ describe('normalizeURL', () => {
     expect(
       normalizeURL('http://test.tld/script.js', 'http://test.tld/js/myscript.js')
     ).toBe('http://test.tld/script.js');
+  });
+});
+
+describe('isSameOrigin', () => {
+  it('should succeed the test for the current url', () => {
+    expect(isSameOrigin(location.href)).toBe(true);
+  });
+
+  it('should not require a protocol to succeed', () => {
+    expect(isSameOrigin('//' + location.host)).toBe(true);
+  });
+
+  it('should fail for google.com', () => {
+    expect(isSameOrigin('http://google.com')).toBe(false);
   });
 });
