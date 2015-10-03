@@ -1,4 +1,4 @@
-# system loader [![build status][1]][2] [![Coverage Status][3]][4]
+# System Loader [![build status][1]][2] [![Coverage Status][3]][4]
 
 A module loader for the browser inspired by the [JavaScript Loader Standard](https://whatwg.github.io/loader/).
 
